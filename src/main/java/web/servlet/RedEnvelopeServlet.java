@@ -24,8 +24,6 @@ public class RedEnvelopeServlet extends HttpServlet {
 		String[] values = req.getParameterValues("money");
 		
 		// 2.處理請求
-		// mapToInt 轉換
-		
 		int sum = Arrays.stream(values) // 先進行陣列資料 stream 串流化
 				.mapToInt(value -> Integer.parseInt(value)) // map轉換, 將 value 字串透過 Integer.parseInt() 轉成 int
 				.sum(); // 計算總和
