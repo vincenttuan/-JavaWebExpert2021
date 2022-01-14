@@ -27,6 +27,12 @@
 			</a>
 		</li>
 		
+		<li>
+			<a href="./servlet/redenvelope?money=1000&money=2000&money=5000">
+				RedEnvelopeServlet (有帶參數 money=1000&money=2000&money=5000)
+			</a>
+		</li>
+		
 	</ul>
 </body>
 </html>
