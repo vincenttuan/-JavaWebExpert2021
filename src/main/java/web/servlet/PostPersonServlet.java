@@ -39,7 +39,7 @@ public class PostPersonServlet extends HttpServlet {
 		List<Throwable> errors = new ArrayList<>(); // 錯誤訊息集合
 		Integer age = 0;
 		try {
-			age = Integer.parseInt(ageStr); // 字串轉數字成功
+			age = Integer.parseInt(ageStr); // 字串轉數字
 		} catch (Exception e) {
 			errors.add(e); // 字串轉數字失敗 
 		}
@@ -49,7 +49,7 @@ public class PostPersonServlet extends HttpServlet {
 		try {
 			birthday = sdf.parse(birth); // 字串轉日期
 		} catch (Exception e) {
-			errors.add(e); 
+			errors.add(e); // 字串轉日期失敗
 		}
 		
 		// 3.回應請求
