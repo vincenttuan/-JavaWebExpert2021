@@ -11,25 +11,25 @@
 	<ul>
 		<li>
 			<a href="./servlet/hellotime">
-				HelloTimeServlet
+				(GET) HelloTimeServlet
 			</a>
 		</li>
 		
 		<li>
 			<a href="./servlet/sayhi?name=John">
-				SayHiServlet (有帶參數 name=John)
+				(GET) SayHiServlet (有帶參數 name=John)
 			</a>
 		</li>
 		
 		<li>
 			<a href="./servlet/bmi?h=170&w=60">
-				BMIServlet (有帶參數 h=170&w=60)
+				(GET) BMIServlet (有帶參數 h=170&w=60)
 			</a>
 		</li>
 		
 		<li>
 			<a href="./servlet/redenvelope?money=1000&money=2000&money=5000">
-				RedEnvelopeServlet (有帶參數 money=1000&money=2000&money=5000)
+				(GET) RedEnvelopeServlet (有帶參數 money=1000&money=2000&money=5000)
 			</a>
 		</li>
 		
