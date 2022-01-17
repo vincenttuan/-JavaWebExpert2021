@@ -7,7 +7,7 @@
 <title>Web首頁</title>
 </head>
 <body>
-	Web首頁
+	Web Servlet
 	<ul>
 		<li>
 			<a href="./servlet/hellotime">
@@ -45,6 +45,15 @@
 			</a>
 		</li>
 		
+	</ul>
+	
+	MVC
+	<ul>
+		<li>
+			<a href="./mvc/student/form">
+				學生表單 - Student From
+			</a>
+		</li>
 	</ul>
 </body>
 </html>
