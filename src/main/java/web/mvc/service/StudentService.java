@@ -35,6 +35,33 @@ public class StudentService {
 		return students.stream().parallel().filter(s -> s.getId() == id).findAny();
 	}
 	
+	// 修改 student
+	public int update(Student newStudent) {
+		// 驗證是否根據 id 值有此學生 ?
+		Optional<Student> optStudent = getById(newStudent.getId());
+		if(optStudent.isPresent()) {
+			// 注意：isPresent() 得到 true, 才可以使用 get() 得到 Student 物件
+			Student originalStudent = optStudent.get();
+			originalStudent = newStudent; // 修改(替換)
+			return 1;
+		}
+		System.out.printf("update() -> 無此學號: %d 的學生\n", newStudent.getId());
+		return 0;
+	}
+	
+	// 刪除 student
+	public int deleteById(Integer id) {
+		// 驗證是否根據 id 值有此學生 ?
+		Optional<Student> optStudent = getById(id);
+		if(optStudent.isPresent()) {
+			Student originalStudent = optStudent.get();
+			students.remove(originalStudent); // 移除
+			return 1;
+		}
+		System.out.printf("deleteById() -> 無此學號: %d 的學生\n", id);
+		return 0;
+	}
+	
 	// 判斷 id 是否存在 ?
 	private boolean isIdExists(Integer id) {
 		return students.stream().parallel().filter(s -> s.getId() == id).findAny().isPresent();
