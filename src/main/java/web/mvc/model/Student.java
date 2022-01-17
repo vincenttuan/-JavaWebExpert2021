@@ -9,6 +9,19 @@ public class Student {
 	private Integer sex; // 1: 男, 2:女
 	private Date createtime; // 建立時間
 	
+	public Student() {
+		
+	}
+	
+	public Student(Integer id, String name, Integer score, Integer sex, Date createtime) {
+		this.id = id;
+		this.name = name;
+		this.score = score;
+		this.sex = sex;
+		this.createtime = createtime;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
