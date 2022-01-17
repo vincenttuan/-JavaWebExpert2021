@@ -11,6 +11,24 @@
 </head>
 <body>
 	<h1>Student List</h1>
-	${ students }
+	<table border="1" cellspacing="0" cellpadding="3">
+		<thead>
+			<tr>
+				<th>id</th><th>name</th><th>score</th><th>sex</th><th>createtime</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="student" items="${ students }">
+				<tr>
+					<td>${ student.id }</td>
+					<td>${ student.name }</td>
+					<td>${ student.score }</td>
+					<td>${ student.sex }</td>
+					<td>${ student.createtime }</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	
 </body>
 </html>
