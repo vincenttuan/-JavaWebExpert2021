@@ -14,7 +14,8 @@
 	<table border="1" cellspacing="0" cellpadding="3">
 		<thead>
 			<tr>
-				<th>id</th><th>name</th><th>score</th><th>sex</th><th>createtime</th><th>delete</th>
+				<th>id</th><th>name</th><th>score</th><th>sex</th><th>createtime</th>
+				<th>delete</th><th>update</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -30,10 +31,17 @@
 							   value="delete" 
 							   onclick="window.location.href='/web/mvc/student/delete?id=${ student.id }';">
 					</td>
+					<td>
+						<input type="button" 
+							   value="update" 
+							   onclick="window.location.href='/web/mvc/student/get?id=${ student.id }';">
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	
+	<p />
+	<input type="button" value="返回" 
+		   onclick="window.location.href='/web/mvc/student/form';">
 </body>
 </html>
