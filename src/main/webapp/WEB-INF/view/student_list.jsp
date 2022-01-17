@@ -14,7 +14,7 @@
 	<table border="1" cellspacing="0" cellpadding="3">
 		<thead>
 			<tr>
-				<th>id</th><th>name</th><th>score</th><th>sex</th><th>createtime</th>
+				<th>id</th><th>name</th><th>score</th><th>sex</th><th>createtime</th><th>delete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,6 +25,11 @@
 					<td>${ student.score }</td>
 					<td>${ student.sex }</td>
 					<td>${ student.createtime }</td>
+					<td>
+						<input type="button" 
+							   value="delete" 
+							   onclick="window.location.href='/web/mvc/student/delete?id=${ student.id }';">
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

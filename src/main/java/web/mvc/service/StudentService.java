@@ -32,7 +32,7 @@ public class StudentService {
 	// 根據 id 來取得 student 物件
 	public Optional<Student> getById(Integer id) {
 		// parallel 平行查詢/多核心同步運算
-		return students.stream().parallel().filter(s -> s.getId() == id).findAny();
+		return students.stream().parallel().filter(s -> s.getId().intValue() == id.intValue()).findAny();
 	}
 	
 	// 修改 student
