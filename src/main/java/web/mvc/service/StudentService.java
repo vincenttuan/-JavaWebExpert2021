@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import web.mvc.model.Student;
 
@@ -42,7 +43,13 @@ public class StudentService {
 		if(optStudent.isPresent()) {
 			// 注意：isPresent() 得到 true, 才可以使用 get() 得到 Student 物件
 			Student originalStudent = optStudent.get();
-			originalStudent = newStudent; // 修改(替換)
+			// 找到 originalStudent 在 students 列表中的位置
+			int idx = IntStream.range(0, students.size())
+					.filter(i -> students.get(i).getId().intValue() == originalStudent.getId().intValue())
+					.findFirst()
+					.getAsInt();
+			// 原位置idx的元素被新元素newStudent取代
+			students.set(idx, newStudent); // 原位置idx的元素被新元素newStudent取代
 			return 1;
 		}
 		System.out.printf("update() -> 無此學號: %d 的學生\n", newStudent.getId());
