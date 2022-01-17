@@ -3,6 +3,7 @@ package web.mvc.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import web.mvc.model.Student;
 
@@ -28,9 +29,15 @@ public class StudentService {
 		return 1; // 1:成功
 	}
 	
+	// 根據 id 來取得 student 物件
+	public Optional<Student> getById(Integer id) {
+		// parallel 平行查詢/多核心同步運算
+		return students.stream().parallel().filter(s -> s.getId() == id).findAny();
+	}
+	
 	// 判斷 id 是否存在 ?
 	private boolean isIdExists(Integer id) {
-		return students.stream().filter(s -> s.getId() == id).findAny().isPresent();
+		return students.stream().parallel().filter(s -> s.getId() == id).findAny().isPresent();
 	}
 	
 }
