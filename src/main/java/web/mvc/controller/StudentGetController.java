@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Optional;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,8 +32,15 @@ public class StudentGetController extends HttpServlet {
 		Optional<Student> optStudent = studentService.getById(id);
 		
 		// 3.回應請求
-		PrintWriter out = resp.getWriter();
-		out.print(optStudent.isPresent());
+		if(optStudent.isPresent()) {
+			Student student = optStudent.get();
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/student_update.jsp");
+			req.setAttribute("student", student);
+			rd.forward(req, resp);
+		} else {
+			PrintWriter out = resp.getWriter();
+			out.print("Not found!");
+		}
 	}
 
 }
