@@ -33,6 +33,18 @@
 			</a>
 		</li>
 		
+		<li>
+			<a href="./form/person_form.jsp">
+				(POST) /form/person_form.jsp
+			</a>
+		</li>
+		
+		<li>
+			<a href="./form/exam_form.jsp">
+				(POST) /form/exam_form.jsp
+			</a>
+		</li>
+		
 	</ul>
 </body>
 </html>
