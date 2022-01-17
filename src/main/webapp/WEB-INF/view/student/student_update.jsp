@@ -6,11 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
 <meta charset="UTF-8">
 <title>Student Update JSP page</title>
 </head>
-<body>
-	<form method="post" action="/web/mvc/student/update">
+<body style="padding: 10px">
+	<form class="pure-form" method="post" action="/web/mvc/student/update">
 		<fieldset>
 			<legend>學生表單 - Student Update</legend>
 			<label>學生學號：</label><input type="number" id="id" name="id" value="${ student.id }" placeholder="請輸入學號" />
@@ -27,9 +28,9 @@
 			<input type="date" id="createtime" name="createtime" 
 				   value='<fmt:formatDate value="${ student.createtime }" pattern="yyyy-MM-dd" />' />
 			<p />
-			<input type="submit" value="修改" />
-			<input type="button" value="返回" onclick="window.location.href='/web/mvc/student/form';" />
-			<input type="button" value="查詢" onclick="window.location.href='/web/mvc/student/queryall';" />
+			<input class="pure-button pure-button-primary" type="submit" value="修改" />
+			<input class="pure-button pure-button-primary" type="button" value="返回" onclick="window.location.href='/web/mvc/student/form';" />
+			<input class="pure-button pure-button-primary" type="button" value="查詢" onclick="window.location.href='/web/mvc/student/queryall';" />
 		</fieldset>
 	</form>
 </body>

@@ -6,11 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
 <meta charset="UTF-8">
 <title>Student From JSP page</title>
 </head>
-<body>
-	<form method="post" action="/web/mvc/student/add">
+<body style="padding: 10px">
+	<form class="pure-form" method="post" action="/web/mvc/student/add">
 		<fieldset>
 			<legend>學生表單 - Student From</legend>
 			<label>學生學號：</label><input type="number" id="id" name="id" placeholder="請輸入學號" />
@@ -25,8 +26,8 @@
 			<br />
 			<label>註冊日期：</label><input type="date" id="createtime" name="createtime" value="2022-01-01"/>
 			<p />
-			<input type="submit" value="新增" />
-			<input type="button" value="查詢" onclick="window.location.href='/web/mvc/student/queryall';" />
+			<input class="pure-button pure-button-primary" type="submit" value="新增" />
+			<input class="pure-button pure-button-primary" type="button" value="查詢" onclick="window.location.href='/web/mvc/student/queryall';" />
 		</fieldset>
 	</form>
 </body>
