@@ -29,6 +29,7 @@ public class StudentReadController extends HttpServlet {
 		List<Student> students = studentService.queryAll();
 		
 		// 3.回應請求
+		// 內部傳導(好處是可以傳送資料)
 		// 將 students 列表資料轉發給 /WEB-INF/view/student_list.jsp
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/student_list.jsp"); // 分派器
 		req.setAttribute("students", students); // 設定傳給 jsp 的資料

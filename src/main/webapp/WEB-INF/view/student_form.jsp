@@ -10,7 +10,7 @@
 <title>Student From JSP page</title>
 </head>
 <body>
-	<form method="post" action="#">
+	<form method="post" action="/web/mvc/student/add">
 		<fieldset>
 			<legend>學生表單 - Student From</legend>
 			<label>學生學號：</label><input type="number" id="id" name="id" placeholder="請輸入學號" />
