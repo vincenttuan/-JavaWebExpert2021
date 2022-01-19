@@ -3,6 +3,7 @@ package web.mvc.course.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,11 @@ public class CourseController extends HttpServlet {
 	}
 	
 	private void form(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+		// 1.收到請求
+		// 2.處理請求
+		// 3.回應請求
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/course/course_form.jsp"); // 分派器
+		rd.forward(req, resp); // 傳送到指定目標
 	}
 	
 	private void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,6 +50,11 @@ public class CourseController extends HttpServlet {
 	}
 	
 	private void doHandle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 處理中文問題
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html;charset=UTF-8");
+				
 		String httpMethod = req.getMethod();
 		String pathInfo = req.getPathInfo();
 		System.out.println(httpMethod + " /mvc/course" + pathInfo);
