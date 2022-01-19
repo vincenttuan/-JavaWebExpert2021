@@ -11,16 +11,16 @@
 <title>Course From JSP page</title>
 </head>
 <body style="padding: 10px">
-	<form class="pure-form" method="post" action="/web/mvc/course/add">
+	<form class="pure-form" method="post" action="/web/mvc/course/${ action }">
 		<fieldset>
 			<legend>課程表單 - Course From</legend>
-			<label>課程編號：</label><input type="number" id="id" name="id" placeholder="請輸入編號" />
+			<label>課程編號：</label><input type="number" id="id" name="id" value="${ course.id }" ${ (course.id != null)?'readonly':'' } placeholder="請輸入編號" />
 			<br />
-			<label>課程名稱：</label><input type="text" id="name" name="name" placeholder="請輸入名稱" />
+			<label>課程名稱：</label><input type="text" id="name" name="name" value="${ course.name }" placeholder="請輸入名稱" />
 			<br />
-			<label>課程學分：</label><input type="number" id="credit" name="credit" placeholder="請輸入學分" />
+			<label>課程學分：</label><input type="number" id="credit" name="credit" value="${ course.credit }" placeholder="請輸入學分" />
 			<p />
-			<input class="pure-button pure-button-primary" type="submit" value="新增" />
+			<input class="pure-button pure-button-primary" type="submit" value="${ action }" />
 			<input class="pure-button pure-button-primary" type="button" value="查詢" onclick="window.location.href='/web/mvc/course/queryall';" />
 		</fieldset>
 	</form>
