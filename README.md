@@ -4,7 +4,7 @@ JavaWebExpert2021
 <pre>
 sqlite for java web deploy :
 1.pom.xml
-<dependency>
+&lg;dependency>
 	<groupId>org.xerial</groupId>
 	<artifactId>sqlite-jdbc</artifactId>
 	<version>3.36.0.3</version>
