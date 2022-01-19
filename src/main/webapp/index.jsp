@@ -54,6 +54,16 @@
 				學生表單 - Student From
 			</a>
 		</li>
+		<li>
+			<a href="./mvc/course/form">
+				課程表單 - Course From
+			</a>
+		</li>
+		<li>
+			<a href="./mvc/selection/form">
+				選課表單 - Course Selection Form
+			</a>
+		</li>
 	</ul>
 </body>
 </html>
