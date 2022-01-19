@@ -108,7 +108,26 @@ public class CourseController extends HttpServlet {
 	}
 
 	private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		// 1.收到請求
+		String form_id = req.getParameter("id");
+		String form_name = req.getParameter("name");
+		String form_credit = req.getParameter("credit");
+		
+		// 2.處理請求
+		Integer id = Integer.parseInt(form_id);
+		String name = form_name;
+		Integer credit = Integer.parseInt(form_credit);
+		
+		Course course = new Course(id, name, credit);
+		int rowcount = courseService.update(course);
+		
+		// 3.回應請求
+		if(rowcount > 0) {
+			resp.sendRedirect("/web/mvc/course/queryall");
+		} else {
+			PrintWriter out = resp.getWriter();
+			out.print("Update fail! course = " + course);
+		}		
 	}
 
 	private void doHandle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
