@@ -33,7 +33,7 @@ public class SelectionService {
 		Selection selection = new Selection();
 		selection.setStudentId(studentId);
 		for(Integer course_id : course_ids) {
-			Course course = courseService.getById(studentId).get();
+			Course course = courseService.getById(course_id).get();
 			selection.addCourse(course);
 		}
 	}
