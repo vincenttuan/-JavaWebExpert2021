@@ -14,17 +14,27 @@
 	<form class="pure-form" method="post" action="/web/mvc/selection/add_or_update">
 		<fieldset>
 			<legend>選課表單 - Selection Result</legend>
-			<label>學生學號：</label>${ student.id }
 			<input type="hidden" id="student.id" name="student.id" value="${ student.id }" />
-			<br />
-			<label>學生姓名：</label>${ student.name }
-			<br />
-			<label>選課資訊：</label>
-			<c:forEach var="course" items="${ courses }">
-				<input type="checkbox" id="course.id" name="course.id" value="${ course.id }" /> ${ course.name }（${ course.credit }）、 
-			</c:forEach>
-			<p />
-			<input class="pure-button pure-button-primary" type="submit" value="變更選課" />
+			<table>
+				<tr>
+					<td>學生學號：</td><td>${ student.id }</td>
+				</tr>
+				<tr>
+					<td>學生姓名：</td><td>${ student.name }</td>
+				</tr>
+				<tr>
+					<td valign="top">選課資訊：</td>
+					<td>
+						<c:forEach var="course" items="${ courses }">
+							<input type="checkbox" id="course.id" name="course.id" value="${ course.id }" /> ${ course.name }（${ course.credit }） 
+							<br />
+						</c:forEach>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input class="pure-button pure-button-primary" type="submit" value="變更選課" /></td>
+				</tr>
+			</table>
 		</fieldset>
 	</form>
 </body>
