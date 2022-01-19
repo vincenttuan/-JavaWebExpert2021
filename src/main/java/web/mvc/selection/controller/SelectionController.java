@@ -3,6 +3,7 @@ package web.mvc.selection.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -56,7 +57,23 @@ public class SelectionController extends HttpServlet {
 			resp.sendError(500, "無此學號：" + student_id);
 		}
 	}
-
+	
+	private void addOrUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 1.收到請求
+		Integer student_id = Integer.parseInt(req.getParameter("student.id"));
+		String[] course_ids_str = req.getParameterValues("course.id");
+		// 2.處理請求
+		List<Integer> course_ids =  Arrays.stream(course_ids_str) // String
+										  .mapToInt(Integer::parseInt) // 轉 int...
+										  .boxed() // 轉 Integer ...
+										  .collect(Collectors.toList());
+		
+		// 3.回應請求
+		PrintWriter out = resp.getWriter();
+		out.println(student_id);
+		out.println(Arrays.toString(course_ids_str) + " " + course_ids_str.getClass());
+		out.println(course_ids + " " + course_ids.getClass());
+	}
 	
 
 	private void doHandle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -80,6 +97,9 @@ public class SelectionController extends HttpServlet {
 			switch (pathInfo) {
 				case "/search":
 					search(req, resp);
+					break;
+				case "/add_or_update":
+					addOrUpdate(req, resp);
 					break;
 				default:
 					resp.sendError(500, "網路連結路徑錯誤");
