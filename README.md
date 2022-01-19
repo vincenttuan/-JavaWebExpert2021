@@ -5,16 +5,16 @@ JavaWebExpert2021
 sqlite for java web deploy :
 1.pom.xml
 &lt;dependency&gt;
-	<groupId>org.xerial</groupId>
-	<artifactId>sqlite-jdbc</artifactId>
-	<version>3.36.0.3</version>
-</dependency>
+	&lt;groupId>org.xerial&lt;/groupId>
+	&lt;artifactId>sqlite-jdbc&lt;/artifactId>
+	&lt;version>3.36.0.3&lt;/version>
+&lt;/dependency>
 
-<dependency>
-	<groupId>org.simpleflatmapper</groupId>
-	<artifactId>sfm-jdbc</artifactId>
-	<version>8.2.3</version>
-</dependency>
+&lt;dependency>
+	&lt;groupId>org.simpleflatmapper&lt;/groupId>
+	&lt;artifactId>sfm-jdbc&lt;/artifactId>
+	&lt;version>8.2.3&lt;/version>
+&lt;/dependency>
 
 2.在 /WEB-INF 下建立 /db 資料夾
 
