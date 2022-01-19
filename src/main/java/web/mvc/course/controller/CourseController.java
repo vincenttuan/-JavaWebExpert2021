@@ -20,15 +20,27 @@ import web.mvc.course.model.Course;
 import web.mvc.course.service.CourseService;
 
 /******************************
- * Post /mvc/course/add Get /mvc/course/delete Get /mvc/course/form Get
- * /mvc/course/get Get /mvc/course/queryall Post /mvc/course/update
+ * Post /mvc/course/add 
+ * Get /mvc/course/delete 
+ * Get /mvc/course/form 
+ * Get /mvc/course/get 
+ * Get /mvc/course/queryall 
+ * Post /mvc/course/update
  ******************************/
 @WebServlet(urlPatterns = "/mvc/course/*")
 public class CourseController extends HttpServlet {
 	private CourseService courseService = new CourseService();
 
 	private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 1.收到請求
+		String delete_id = req.getParameter("id");
 
+		// 2.處理請求
+		Integer id = Integer.parseInt(delete_id);
+		courseService.deleteById(id);
+
+		// 3.回應請求
+		resp.sendRedirect("/web/mvc/course/queryall");
 	}
 
 	private void form(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -112,22 +124,22 @@ public class CourseController extends HttpServlet {
 		String form_id = req.getParameter("id");
 		String form_name = req.getParameter("name");
 		String form_credit = req.getParameter("credit");
-		
+
 		// 2.處理請求
 		Integer id = Integer.parseInt(form_id);
 		String name = form_name;
 		Integer credit = Integer.parseInt(form_credit);
-		
+
 		Course course = new Course(id, name, credit);
 		int rowcount = courseService.update(course);
-		
+
 		// 3.回應請求
-		if(rowcount > 0) {
+		if (rowcount > 0) {
 			resp.sendRedirect("/web/mvc/course/queryall");
 		} else {
 			PrintWriter out = resp.getWriter();
 			out.print("Update fail! course = " + course);
-		}		
+		}
 	}
 
 	private void doHandle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
