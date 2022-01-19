@@ -31,12 +31,34 @@ public class CourseController extends HttpServlet {
 	}
 	
 	private void doHandle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		PrintWriter out = resp.getWriter();
-		out.print(req.getMethod() + " /mvc/course" + req.getPathInfo());
-		out.print("\n");
-		out.print("req.getMethod() = " + req.getMethod());
-		out.print("\n");
-		out.print("req.getPathInfo() = " + req.getPathInfo());
+		String httpMethod = req.getMethod();
+		String pathInfo = req.getPathInfo();
+		System.out.println(httpMethod + " /mvc/course" + pathInfo);
+		if(httpMethod.equalsIgnoreCase("GET")) {
+			switch (pathInfo) {
+				case "/delete":
+					break;
+				case "/form":
+					break;
+				case "/get":
+					break;
+				case "/queryall":
+					break;	
+				default:
+					resp.sendError(500, "網路連結路徑錯誤");
+			}
+		} else if(httpMethod.equalsIgnoreCase("POST")) {
+			switch (pathInfo) {
+				case "/add":
+					break;
+				case "/update":
+					break;	
+				default:
+					resp.sendError(500, "網路連結路徑錯誤");
+			}
+		} else {
+			resp.sendError(500, "HTTP 方法錯誤 (本站只支援 GET 或 POST)");
+		}
 	}
 	
 }
