@@ -36,6 +36,8 @@ public class SelectionService {
 			Course course = courseService.getById(course_id).get();
 			selection.addCourse(course);
 		}
+		// 加入到 selections 集合
+		selections.add(selection)
 	}
 	
 }
