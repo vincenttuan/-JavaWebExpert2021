@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import web.mvc.course.model.Course;
 import web.mvc.course.service.CourseService;
+import web.mvc.selection.service.SelectionService;
 import web.mvc.student.model.Student;
 import web.mvc.student.service.StudentService;
 
@@ -30,7 +31,7 @@ public class SelectionController extends HttpServlet {
 	
 	private StudentService studentService = new StudentService();
 	private CourseService courseService = new CourseService();
-
+	private SelectionService selectionService = new SelectionService();
 	
 	private void form(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 1.收到請求
@@ -69,12 +70,20 @@ public class SelectionController extends HttpServlet {
 										  .collect(Collectors.toList());
 		
 		// 3.回應請求
-		PrintWriter out = resp.getWriter();
-		out.println(student_id);
-		out.println(Arrays.toString(course_ids_str) + " " + course_ids_str.getClass());
-		out.println(course_ids + " " + course_ids.getClass());
+		selectionService.addOrUpdate(student_id, course_ids);
+		
+		resp.sendRedirect("/web/mvc/selection/queryall");
+		
 	}
 	
+	private void queryall(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 1.收到請求
+		// 2.處理請求
+		// 3.回應請求
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/selection/selection_list.jsp"); // 分派器
+		req.setAttribute("selections", selectionService.queryAll()); 
+		rd.forward(req, resp); 
+	}
 
 	private void doHandle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 處理中文問題
@@ -90,6 +99,9 @@ public class SelectionController extends HttpServlet {
 				case "/form":
 					form(req, resp);
 					break;
+				case "/queryall":
+					queryall(req, resp);
+					break;	
 				default:
 					resp.sendError(500, "網路連結路徑錯誤");
 			}

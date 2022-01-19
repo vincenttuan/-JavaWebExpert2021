@@ -37,7 +37,7 @@ public class SelectionService {
 			selection.addCourse(course);
 		}
 		// 加入到 selections 集合
-		selections.add(selection)
+		selections.add(selection);
 	}
 	
 }
