@@ -50,11 +50,19 @@ public class CourseController extends HttpServlet {
 		// 2.處理請求
 		List<Course> courses = courseService.queryAll();
 		// 是否有排序參數 ?
-		if (sort != null && sort.equals("1")) {
-			courses = courses.stream()
-					// .sorted(Comparator.comparing(Course::getCredit)) // 正序(小->大)
-					.sorted(Comparator.comparing(Course::getCredit).reversed()) // 反序(大->小)
-					.collect(Collectors.toList());
+		if (sort != null) {
+			switch (sort) {
+				case "0": // 正序(小->大)
+					courses = courses.stream()
+						.sorted(Comparator.comparing(Course::getCredit)) // 正序(小->大)
+						.collect(Collectors.toList());
+					break;
+				case "1": // 反序(大->小)
+					courses = courses.stream()
+						.sorted(Comparator.comparing(Course::getCredit).reversed()) // 反序(大->小)
+						.collect(Collectors.toList());
+					break;
+			}
 		}
 		// 3.回應請求
 		// 內部傳導(好處是可以傳送資料)

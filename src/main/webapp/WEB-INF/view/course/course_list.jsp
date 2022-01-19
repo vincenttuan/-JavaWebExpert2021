@@ -17,7 +17,10 @@
 			<tr>
 				<th>id</th>
 				<th>name</th>
-				<th onclick="window.location.href='?sort=1';" title="按我一下可以排序" style="cursor: pointer;text-decoration: underline;text-decoration-color: blue;color: blue">credit ▼</th>
+				<th>credit 
+					<a href="?sort=0">▲</a>
+					<a href="?sort=1">▼</a>
+				</th>
 				<th>delete</th>
 				<th>update</th>
 			</tr>
