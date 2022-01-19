@@ -2,7 +2,9 @@ package web.mvc.course.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,7 +75,23 @@ public class CourseController extends HttpServlet {
 	}
 
 	private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		// 1.收到請求
+		String form_id = req.getParameter("id");
+		String form_name = req.getParameter("name");
+		String form_credit = req.getParameter("credit");
+		
+		// 2.處理請求
+		Integer id = Integer.parseInt(form_id);
+		String name = form_name;
+		Integer credit = Integer.parseInt(form_credit);
+		
+		Course course = new Course(id, name, credit);
+		courseService.add(course);
+		
+		// 3.回應請求
+		// 外部傳導(無法透過 setAttribute() 傳送傳送資料)
+		// sendRedirect 是將要傳導的網址丟給瀏覽器，瀏覽器接到訊息後，會自動跳轉到該頁面
+		resp.sendRedirect("/web/mvc/course/queryall");
 	}
 
 	private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
