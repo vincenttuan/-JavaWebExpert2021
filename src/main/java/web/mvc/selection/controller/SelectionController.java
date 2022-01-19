@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import web.mvc.course.model.Course;
 import web.mvc.course.service.CourseService;
+import web.mvc.student.model.Student;
 import web.mvc.student.service.StudentService;
 
 /******************************
@@ -36,6 +37,24 @@ public class SelectionController extends HttpServlet {
 		// 3.回應請求
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/selection/selection_form.jsp"); // 分派器
 		rd.forward(req, resp); // 傳送到指定目標
+	}
+	
+	private void search(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 1.收到請求
+		Integer student_id = Integer.parseInt(req.getParameter("student.id"));
+		// 2.處理請求
+		Optional<Student> optStudent = studentService.getById(student_id);
+		// 3.回應請求
+		if(optStudent.isPresent()) {
+			Student student = optStudent.get();
+			List<Course> courses = courseService.queryAll();
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/selection/selection_result.jsp"); // 分派器
+			req.setAttribute("student", student);
+			req.setAttribute("courses", courses);
+			rd.forward(req, resp); // 傳送到指定目標
+		} else {
+			resp.sendError(500, "無此學號：" + student_id);
+		}
 	}
 
 	
@@ -59,9 +78,11 @@ public class SelectionController extends HttpServlet {
 			}
 		} else if (httpMethod.equalsIgnoreCase("POST")) {
 			switch (pathInfo) {
-				
+				case "/search":
+					search(req, resp);
+					break;
 				default:
-				resp.sendError(500, "網路連結路徑錯誤");
+					resp.sendError(500, "網路連結路徑錯誤");
 			}
 		} else {
 			resp.sendError(500, "HTTP 方法錯誤 (本站只支援 GET 或 POST)");
