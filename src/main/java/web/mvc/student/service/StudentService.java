@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import web.mvc.spec.IService;
 import web.mvc.student.model.Student;
 
-public class StudentService {
+public class StudentService implements IService<Student> {
 	private static List<Student> students;
 	static { // 類別資源初始資料實作區
 		students = new ArrayList<>();
@@ -17,10 +18,12 @@ public class StudentService {
 		students.add(new Student(2022003, "Jo", 80, 2, new Date()));
 	}
 	
+	// 全部查詢
 	public List<Student> queryAll() {
 		return students;
 	}
 	
+	// 新增
 	public int add(Student student) {
 		if(isIdExists(student.getId())) {
 			System.out.printf("add() -> id: %d 已存在", student.getId());
@@ -30,7 +33,7 @@ public class StudentService {
 		return 1; // 1:成功
 	}
 	
-	// 根據 id 來取得 student 物件
+	// 單筆查詢：根據 id 來取得 student 物件
 	public Optional<Student> getById(Integer id) {
 		// parallel 平行查詢/多核心同步運算
 		return students.stream().parallel().filter(s -> s.getId().intValue() == id.intValue()).findAny();
@@ -70,7 +73,7 @@ public class StudentService {
 	}
 	
 	// 判斷 id 是否存在 ?
-	private boolean isIdExists(Integer id) {
+	public boolean isIdExists(Integer id) {
 		return students.stream().parallel().filter(s -> s.getId() == id).findAny().isPresent();
 	}
 	
