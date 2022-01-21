@@ -1,6 +1,11 @@
 package web.filter;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.FilterChain;
 import javax.servlet.RequestDispatcher;
@@ -13,7 +18,23 @@ import javax.servlet.http.HttpSession;
 
 @WebFilter(urlPatterns = "/session/*")
 public class LoginFilter extends HttpFilter {
-
+	
+	private static List<String> userNames;
+	private static List<String> userPasswords;
+	static {
+		userNames     = Arrays.asList("A01",  "B02",  "C03");
+		userPasswords = Arrays.asList("1234", "5678", "1111");
+	}
+	
+	private boolean loginCheck(String username, String password) {
+		for(int i=0;i<userNames.size();i++) {
+			if(userNames.get(i).equals(username) && userPasswords.get(i).equals(password)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	@Override
 	protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
@@ -34,7 +55,8 @@ public class LoginFilter extends HttpFilter {
 				rd.forward(req, resp);
 				return;
 			}
-			if(username.equals("A01") && password.equals("1234")) {
+			// 判斷是否登入成功 ?
+			if(loginCheck(username, password)) {
 				// 成功登入時會加入一個 session 的屬性資料 username
 				session.setAttribute("username", username);
 				chain.doFilter(req, resp);
