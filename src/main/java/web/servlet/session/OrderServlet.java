@@ -1,6 +1,9 @@
 package web.servlet.session;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +21,19 @@ public class OrderServlet extends HttpServlet {
 		//session.setMaxInactiveInterval(10); // 秒為單位, session 最大閒置存活時間
 		//resp.getWriter().println("session id: " + session.getId());
 		//resp.getWriter().println("form data: " + req.getParameterMap().size());
+		
+		Map<String, String[]> formData = req.getParameterMap();
+		if(formData.size() > 0) {
+			List<Map<String, String[]>> list = null;
+			if(session.getAttribute("list") == null) {
+				list = new ArrayList<>();
+			} else {
+				list = (List)session.getAttribute("list");
+			}
+			list.add(formData);
+			session.setAttribute("list", list);
+			System.out.println(session.getAttribute("list"));
+		}
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/session/order.jsp");
 		rd.forward(req, resp);
 	}
