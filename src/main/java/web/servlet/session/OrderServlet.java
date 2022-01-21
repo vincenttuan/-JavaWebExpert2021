@@ -40,10 +40,10 @@ public class OrderServlet extends HttpServlet {
 			list.add(formData);
 			session.setAttribute("list", list);
 			System.out.println(session.getAttribute("list"));
-			// 到購物車取呈現資料
-			//RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/session/cart.jsp");
-			//rd.forward(req, resp);
-			//return;
+			// 到購物車呈現資料
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/session/cart.jsp");
+			rd.forward(req, resp);
+			return;
 		}
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/session/order.jsp");
 		rd.forward(req, resp);

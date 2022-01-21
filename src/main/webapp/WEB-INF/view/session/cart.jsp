@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,7 +26,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					
+					<c:forEach var="formData" varStatus="status" items="${ sessionScope['list'] }">
+						<tr>
+							<td>${ (status.index + 1) }</td>
+							<td>${ formData['name'] }</td>
+							<td>${ formData['amount'] }</td>
+							<td>${ formData['price'] }</td>
+							<td>${ formData['amount'] * formData['price'] }</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 			<p />
