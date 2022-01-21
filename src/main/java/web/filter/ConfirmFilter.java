@@ -11,6 +11,8 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.servlet.report.MyResponse;
+
 //@WebFilter(urlPatterns = "/servlet/report/a") // 欲過濾/攔截的路徑
 //@WebFilter(urlPatterns = {"/servlet/report/a", "/servlet/report/b"}) // 欲過濾/攔截的路徑
 @WebFilter(urlPatterns = "/servlet/report/*") // 欲過濾/攔截的路徑
@@ -31,7 +33,15 @@ public class ConfirmFilter extends HttpFilter {
 		if(pass != null && pass.equals("1")) {
 			// 直接放行往下執行
 			System.out.println("pass...");
-			chain.doFilter(req, resp);
+			// 自行創建回應物件
+			MyResponse myResp = new MyResponse(resp);
+			chain.doFilter(req, myResp);
+			// 加入浮水印
+			String html = myResp.getHTMLString();
+			// <body 改成 <body background='/web/image/watermark.png'  
+			html = html.replace("<body", "<body background='/web/image/watermark.png'");
+			resp.getWriter().print(html);
+			
 		} else {
 			System.out.println("Stop");
 			// 轉跳到 confirm.jsp 頁面
