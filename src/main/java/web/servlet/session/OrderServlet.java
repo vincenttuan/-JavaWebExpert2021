@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 public class OrderServlet extends HttpServlet {
 	
 	private void doHandle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession(true); // req.getSession();
+		HttpSession session = req.getSession(false);
 		//session.setMaxInactiveInterval(10); // 秒為單位, session 最大閒置存活時間
 		//resp.getWriter().println("session id: " + session.getId());
 		//resp.getWriter().println("form data: " + req.getParameterMap().size());

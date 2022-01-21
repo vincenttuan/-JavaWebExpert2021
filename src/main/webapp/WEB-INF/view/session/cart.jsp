@@ -26,6 +26,7 @@
 					
 				</tbody>
 			</table>
+			<p />
 			<button type="button"
 				onclick="window.location.href='/web/session/order'"
 				class="pure-button pure-button-primary">繼續購物</button>

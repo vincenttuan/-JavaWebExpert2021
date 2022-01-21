@@ -29,6 +29,6 @@
         		onclick="window.location.href='/web/session_logout'"
         		class="pure-button pure-button-primary">登出</button>		
     </fieldset>
-</form>
+	</form>
 </body>
 </html>
