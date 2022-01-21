@@ -3,6 +3,7 @@ package web.servlet.report;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ReportBServelt extends HttpServlet {
 	
 	private void doHandle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		PrintWriter out = resp.getWriter();
-		out.println("Report B Servelt");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/report/report_b.jsp");
+		rd.forward(req, resp);
 	}
 	
 	@Override
