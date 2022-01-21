@@ -2,6 +2,8 @@ package web.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +32,7 @@ public class SayHiServlet extends HttpServlet {
 		// 3.回應請求
 		PrintWriter out = resp.getWriter(); // 回應物件(將資料回應給瀏覽器)
 		out.print(result);
+		
 	}
 
 }

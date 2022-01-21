@@ -2,6 +2,8 @@ package web.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,6 +33,8 @@ public class HelloTimeServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter(); // 回應物件(將資料回應給瀏覽器)
 		out.print("Hello ");
 		out.print(result);
+		
+		
 	}
 
 	
