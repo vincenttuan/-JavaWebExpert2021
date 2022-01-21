@@ -10,7 +10,9 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter(urlPatterns = {"/servlet/report/a"}) // 欲過濾/攔截的路徑
+//@WebFilter(urlPatterns = "/servlet/report/a") // 欲過濾/攔截的路徑
+//@WebFilter(urlPatterns = {"/servlet/report/a", "/servlet/report/b"}) // 欲過濾/攔截的路徑
+@WebFilter(urlPatterns = "/servlet/report/*") // 欲過濾/攔截的路徑
 public class ConfirmFilter extends HttpFilter {
 
 	@Override
@@ -18,7 +20,16 @@ public class ConfirmFilter extends HttpFilter {
 			throws IOException, ServletException {
 		PrintWriter out = resp.getWriter();
 		out.println("ConfirmFilter 1: Request");
-		out.println("Stop");
+		
+		// 透過 pass 參數來決定是否放行
+		String pass = req.getParameter("pass");
+		if(pass != null && pass.equals("1")) {
+			// 直接放行往下執行
+			chain.doFilter(req, resp);
+		} else {
+			out.println("Stop");
+		}
+		
 		out.println("ConfirmFilter 2: Response");
 	}
 	
