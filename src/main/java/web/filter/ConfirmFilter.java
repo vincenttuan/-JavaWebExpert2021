@@ -19,6 +19,11 @@ public class ConfirmFilter extends HttpFilter {
 	@Override
 	protected void doFilter(HttpServletRequest req, HttpServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
+		// 處理中文問題
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html;charset=UTF-8");
+				
 		System.out.println("ConfirmFilter 1: Request");
 		
 		// 透過 pass 參數來決定是否放行
@@ -29,7 +34,9 @@ public class ConfirmFilter extends HttpFilter {
 			chain.doFilter(req, resp);
 		} else {
 			System.out.println("Stop");
-			
+			// 轉跳到 confirm.jsp 頁面
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/report/confirm.jsp");
+			rd.forward(req, resp);
 		}
 		
 		System.out.println("ConfirmFilter 2: Response");

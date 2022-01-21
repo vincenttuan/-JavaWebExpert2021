@@ -12,12 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/servlet/report/a")
 public class ReportAServelt extends HttpServlet {
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+	private void doHandle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/report/report_a.jsp");
 		rd.forward(req, resp);
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doHandle(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doHandle(req, resp);
 	}
 	
 }
