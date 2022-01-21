@@ -11,7 +11,7 @@
 <body style="padding: 20px">
 	<form class="pure-form">
 		<fieldset>
-			<legend>Cart List</legend>
+			<legend>${ sessionScope['username'] } Cart List</legend>
 			<table class="pure-table pure-table-bordered">
 				<thead>
 					<tr>

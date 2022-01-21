@@ -10,7 +10,7 @@
 <body style="padding: 20px">
 	<form class="pure-form" method="post">
     <fieldset>
-        <legend>Order From</legend>
+        <legend>${ sessionScope['username'] } Order From</legend>
         品名：<select id="name" name="name">
         		<option value="拿鐵">拿鐵</option>
         		<option value="美式">美式</option>

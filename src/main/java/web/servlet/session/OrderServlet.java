@@ -2,6 +2,7 @@ package web.servlet.session;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,17 +23,27 @@ public class OrderServlet extends HttpServlet {
 		//resp.getWriter().println("session id: " + session.getId());
 		//resp.getWriter().println("form data: " + req.getParameterMap().size());
 		
-		Map<String, String[]> formData = req.getParameterMap();
-		if(formData.size() > 0) {
-			List<Map<String, String[]>> list = null;
+		String name = req.getParameter("name");
+		String amount = req.getParameter("amount");
+		String price = req.getParameter("price");
+		if(name != null) {
+			List<Map<String, Object>> list = null;
 			if(session.getAttribute("list") == null) {
 				list = new ArrayList<>();
 			} else {
 				list = (List)session.getAttribute("list");
 			}
+			Map<String, Object> formData = new LinkedHashMap<>();
+			formData.put("name", name);
+			formData.put("amount", Integer.parseInt(amount));
+			formData.put("price", Integer.parseInt(price));
 			list.add(formData);
 			session.setAttribute("list", list);
 			System.out.println(session.getAttribute("list"));
+			// 到購物車取呈現資料
+			//RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/session/cart.jsp");
+			//rd.forward(req, resp);
+			//return;
 		}
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/session/order.jsp");
 		rd.forward(req, resp);
