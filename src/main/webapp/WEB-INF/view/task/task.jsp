@@ -51,6 +51,7 @@
         ]);
 
         var options = {
+          is3D: true,		
           title: '${ task.name } Daily Activities'
         };
 
