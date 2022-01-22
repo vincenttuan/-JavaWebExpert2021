@@ -2,6 +2,7 @@ package web.mvc.task.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +17,26 @@ public class TaskController extends HttpServlet {
 	
 	private TaskService taskService = new TaskServiceImpl();
 	
+	private void query(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/task/task.jsp");
+		req.setAttribute("tasks", taskService.queryAll());
+		rd.forward(req, resp);
+	}
+	
 	private void doHandle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		switch (req.getMethod()) {
+			case "GET":
+				switch(req.getPathInfo()) {
+					case "/query":
+						query(req, resp);
+						break;
+				}
+				break;
+	
+			case "POST":
+				
+				break;
+		}
 	}
 	
 	@Override
