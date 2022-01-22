@@ -2,6 +2,7 @@ package web.mvc.task.depository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -31,8 +32,20 @@ public class TaskDaoImpl implements TaskDao {
 	
 	@Override
 	public Integer create(Task task) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "INSERT INTO Task (name, 'work', eat, commute, entertainment, sleep) VALUES(?, ?, ?, ?, ?, ?)";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, task.getName());
+			pstmt.setInt(2, task.getWork());
+			pstmt.setInt(3, task.getEat());
+			pstmt.setInt(4, task.getCommute());
+			pstmt.setInt(5, task.getEntertainment());
+			pstmt.setInt(6, task.getSleep());
+			int rowcount = pstmt.executeUpdate();
+			return rowcount;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return 0;
 	}
 
 	@Override
