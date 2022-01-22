@@ -35,27 +35,37 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public Integer update(Integer id, String name, Integer work, Integer eat, Integer commute, Integer entertainment,
 			Integer sleep) {
-		// TODO Auto-generated method stub
-		return null;
+		Task task = new Task();
+		task.setName(name);
+		task.setWork(work);
+		task.setEat(eat);
+		task.setCommute(commute);
+		task.setEntertainment(entertainment);
+		task.setSleep(sleep);
+		int rowcount = taskDao.update(id, task);
+		return rowcount;
 	}
 
 	@Override
-	public Integer update(String id, String name, String work, String eat, String commute, String entertainment,
-			String sleep) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer update(String id, String name, String work, String eat, String commute, String entertainment, String sleep) {
+		int rowcount = update(Integer.parseInt(id), 
+							  name, 
+							  Integer.parseInt(work), 
+							  Integer.parseInt(eat), 
+							  Integer.parseInt(commute), 
+							  Integer.parseInt(entertainment), 
+							  Integer.parseInt(sleep));
+		return rowcount;
 	}
 
 	@Override
 	public Integer delete(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return taskDao.delete(id);
 	}
 
 	@Override
 	public Integer delete(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return delete(Integer.parseInt(id));
 	}
 
 	@Override
@@ -65,14 +75,12 @@ public class TaskServiceImpl implements TaskService {
 
 	@Override
 	public Task getOne(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return taskDao.readById(id);
 	}
 
 	@Override
 	public Task getOne(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return getOne(Integer.parseInt(id));
 	}
 
 	
