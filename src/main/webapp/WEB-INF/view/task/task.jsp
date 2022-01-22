@@ -32,56 +32,96 @@
 			document.getElementById('subtotal').innerText = calcSubtotal();
 		}
 	</script>
+	
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     ${ task.work }],
+          ['Eat',      ${ task.eat }],
+          ['Commute',  ${ task.commute }],
+          ['Entertainment', ${ task.entertainment }],
+          ['Sleep',    ${ task.sleep }]
+        ]);
+
+        var options = {
+          title: '${ task.name } Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+		
+        ${ drawchart }
+      }
+    </script>
+	
 </head>
 <body style="padding: 20px">
-
-	<form class="pure-form" method="post" onsubmit="return checkSubtotal()" action="/web/mvc/task/${ action }">
-		<fieldset>
-			<table>
-				<tr>
-					<td>id：</td>
-					<td><input type="text" id="id" name="id" value="${ task.id }" readonly /></td>
-				</tr>
-				<tr>
-					<td>name：</td>
-					<td><input type="text" id="name" name="name" value="${ task.name }" /></td>
-				</tr>
-				<tr>
-					<td>work：</td>
-					<td><input type="number" id="work" name="work" value="${ task.work }" onchange="updateSubtotal(this);" /></td>
-				</tr>
-				<tr>
-					<td>eat：</td>
-					<td><input type="number" id="eat" name="eat" value="${ task.eat }" onchange="updateSubtotal(this);" /></td>
-				</tr>
-				<tr>
-					<td>commute：</td>
-					<td><input type="number" id="commute" name="commute" value="${ task.commute }" onchange="updateSubtotal(this);" /></td>
-				</tr>
-				<tr>
-					<td>entertainment：</td>
-					<td><input type="number" id="entertainment" name="entertainment" value="${ task.entertainment }" onchange="updateSubtotal(this);" /></td>
-				</tr>
-				<tr>
-					<td>sleep：</td>
-					<td><input type="number" id="sleep" name="sleep" value="${ task.sleep }" onchange="updateSubtotal(this);" /></td>
-				</tr>
-				<tr>
-					<td>24H：</td>
-					<td><span id="subtotal">24</span>H</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input class="pure-button pure-button-primary" type="submit" value="${ action }" />
-						<input class="pure-button pure-button-primary" type="reset" value="reset" />
-						<input class="pure-button pure-button-primary" type="button" 
-							   onclick="window.location.href='/web/mvc/task/query';"	
-							   value="query" />
-					</td>
-				</tr>
-			</table>
-		</fieldset>
-	</form>
+	<table>
+		<tr>
+			<!-- Task Form -->
+			<td valign="top">
+				<form class="pure-form" method="post" onsubmit="return checkSubtotal()" action="/web/mvc/task/${ action }">
+					<fieldset>
+						<legend>Task Form</legend>
+						<table>
+							<tr>
+								<td>id：</td>
+								<td><input type="text" id="id" name="id" value="${ task.id }" readonly /></td>
+							</tr>
+							<tr>
+								<td>name：</td>
+								<td><input type="text" id="name" name="name" value="${ task.name }" /></td>
+							</tr>
+							<tr>
+								<td>work：</td>
+								<td><input type="number" id="work" name="work" value="${ task.work }" onchange="updateSubtotal(this);" /></td>
+							</tr>
+							<tr>
+								<td>eat：</td>
+								<td><input type="number" id="eat" name="eat" value="${ task.eat }" onchange="updateSubtotal(this);" /></td>
+							</tr>
+							<tr>
+								<td>commute：</td>
+								<td><input type="number" id="commute" name="commute" value="${ task.commute }" onchange="updateSubtotal(this);" /></td>
+							</tr>
+							<tr>
+								<td>entertainment：</td>
+								<td><input type="number" id="entertainment" name="entertainment" value="${ task.entertainment }" onchange="updateSubtotal(this);" /></td>
+							</tr>
+							<tr>
+								<td>sleep：</td>
+								<td><input type="number" id="sleep" name="sleep" value="${ task.sleep }" onchange="updateSubtotal(this);" /></td>
+							</tr>
+							<tr>
+								<td>24H：</td>
+								<td><span id="subtotal">24</span>H</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input class="pure-button pure-button-primary" type="submit" value="${ action }" />
+									<input class="pure-button pure-button-primary" type="reset" value="reset" />
+									<input class="pure-button pure-button-primary" type="button" 
+										   onclick="window.location.href='/web/mvc/task/query';"	
+										   value="query" />
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</form>
+			</td>
+			<!-- Task Chart -->
+			<td valign="top">
+				<div id="piechart" style="width: 900px; height: 350px;"></div>
+			</td>
+		</tr>
+	</table>
+	
 	
 	<p />
 
