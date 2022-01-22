@@ -7,18 +7,29 @@ import web.mvc.task.depository.TaskDaoImpl;
 import web.mvc.task.model.Task;
 
 public class TaskServiceImpl implements TaskService {
-	TaskDao taskDao = new TaskDaoImpl();
+	private TaskDao taskDao = new TaskDaoImpl();
 	
 	@Override
 	public Integer add(String name, Integer work, Integer eat, Integer commute, Integer entertainment, Integer sleep) {
-		// TODO Auto-generated method stub
-		return null;
+		Task task = new Task();
+		task.setName(name);
+		task.setWork(work);
+		task.setEat(eat);
+		task.setCommute(commute);
+		task.setEntertainment(entertainment);
+		task.setSleep(sleep);
+		int rowcount = taskDao.create(task);
+		return rowcount;
 	}
 
 	@Override
 	public Integer add(String name, String work, String eat, String commute, String entertainment, String sleep) {
-		// TODO Auto-generated method stub
-		return null;
+		int rowcount = add(name, Integer.parseInt(work), 
+								 Integer.parseInt(eat), 
+								 Integer.parseInt(commute), 
+								 Integer.parseInt(entertainment), 
+								 Integer.parseInt(sleep));
+		return rowcount;
 	}
 
 	@Override
