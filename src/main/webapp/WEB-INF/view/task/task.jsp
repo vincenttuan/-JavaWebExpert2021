@@ -25,7 +25,10 @@
 			var sum = work + eat + commute + entertainment + sleep;
 			return sum;
 		}
-		function updateSubtotal(n) {
+		function updateSubtotal(tag) {
+			if(tag.value < 0) {
+				tag.value = 0;
+			}
 			document.getElementById('subtotal').innerText = calcSubtotal();
 		}
 	</script>
@@ -45,23 +48,23 @@
 				</tr>
 				<tr>
 					<td>work：</td>
-					<td><input type="number" id="work" name="work" value="8" onchange="updateSubtotal(this.value);" /></td>
+					<td><input type="number" id="work" name="work" value="8" onchange="updateSubtotal(this);" /></td>
 				</tr>
 				<tr>
 					<td>eat：</td>
-					<td><input type="number" id="eat" name="eat" value="3" onchange="updateSubtotal(this.value);" /></td>
+					<td><input type="number" id="eat" name="eat" value="3" onchange="updateSubtotal(this);" /></td>
 				</tr>
 				<tr>
 					<td>commute：</td>
-					<td><input type="number" id="commute" name="commute" value="3" onchange="updateSubtotal(this.value);" /></td>
+					<td><input type="number" id="commute" name="commute" value="3" onchange="updateSubtotal(this);" /></td>
 				</tr>
 				<tr>
 					<td>entertainment：</td>
-					<td><input type="number" id="entertainment" name="entertainment" value="3" onchange="updateSubtotal(this.value);" /></td>
+					<td><input type="number" id="entertainment" name="entertainment" value="3" onchange="updateSubtotal(this);" /></td>
 				</tr>
 				<tr>
 					<td>sleep：</td>
-					<td><input type="number" id="sleep" name="sleep" value="7" onchange="updateSubtotal(this.value);" /></td>
+					<td><input type="number" id="sleep" name="sleep" value="7" onchange="updateSubtotal(this);" /></td>
 				</tr>
 				<tr>
 					<td>24H：</td>
