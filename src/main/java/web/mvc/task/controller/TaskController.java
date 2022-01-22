@@ -34,10 +34,34 @@ public class TaskController extends HttpServlet {
 		}
 	}
 	
+	private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
+	
 	private void query(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/task/task.jsp");
 		req.setAttribute("tasks", taskService.queryAll());
 		rd.forward(req, resp);
+	}
+	
+	private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id = req.getParameter("id");
+		int rowcount = taskService.delete(id);
+		if(rowcount == 1) {
+			resp.sendRedirect("/web/mvc/task/query");
+		} else {
+			resp.sendError(500, "刪除失敗");
+		}
+	}
+	
+	private void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id = req.getParameter("id");
+		
+	}
+	
+	private void drawchart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id = req.getParameter("id");
+		
 	}
 	
 	private void doHandle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,6 +71,15 @@ public class TaskController extends HttpServlet {
 					case "/query":
 						query(req, resp);
 						break;
+					case "/delete":
+						delete(req, resp);
+						break;
+					case "/get":
+						get(req, resp);
+						break;	
+					case "/drawchart":
+						drawchart(req, resp);
+						break;
 				}
 				break;
 	
@@ -55,6 +88,9 @@ public class TaskController extends HttpServlet {
 					case "/add":
 						add(req, resp);
 						break;
+					case "/update":
+						update(req, resp);
+						break;	
 				}
 				break;
 		}
