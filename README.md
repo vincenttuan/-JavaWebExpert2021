@@ -39,4 +39,19 @@ create table Task (
 	entertainment integer,
 	sleep integer
 )
+
+5.insert rows
+INSERT INTO Task
+(name, "work", eat, commute, entertainment, sleep)
+VALUES('Vincent', 11, 2, 2, 2, 7);
+INSERT INTO Task
+(name, "work", eat, commute, entertainment, sleep)
+VALUES('Anita', 12, 1, 2, 3, 6);
+INSERT INTO Task
+(name, "work", eat, commute, entertainment, sleep)
+VALUES('Howard', 10, 1, 1, 4, 8);
+INSERT INTO Task
+(name, "work", eat, commute, entertainment, sleep)
+VALUES('Joanna', 6, 1, 1, 6, 10);
+
 </pre>
