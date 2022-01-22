@@ -90,6 +90,7 @@
 			<tr>
 				<th>id</th><th>name</th><th>work</th><th>eat</th>
 				<th>commute</th><th>entertainment</th><th>sleep</th>
+				<th>刪除</th><th>修改</th><th>繪圖</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -102,6 +103,21 @@
 					<td>${ task.commute }</td>
 					<td>${ task.entertainment }</td>
 					<td>${ task.sleep }</td>
+					<td>
+						<input class="pure-button pure-button-primary" type="button" 
+							   onclick="window.location.href='/web/mvc/task/delete?id=${ task.id }';"	
+							   value="delete" />
+					</td>
+					<td>
+						<input class="pure-button pure-button-primary" type="button" 
+							   onclick="window.location.href='/web/mvc/task/get?id=${ task.id }';"	
+							   value="get" />
+					</td>
+					<td>
+						<input class="pure-button pure-button-primary" type="button" 
+							   onclick="window.location.href='/web/mvc/task/drawchart?id=${ task.id }';"	
+							   value="drawchart" />
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
