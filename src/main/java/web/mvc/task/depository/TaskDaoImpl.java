@@ -23,17 +23,15 @@ public class TaskDaoImpl implements TaskDao {
 			System.out.println(e);
 		}
 	}
-	
+
 	/*
-	public static void main(String[] args) {
-		System.out.println("產生資料庫");
-	}
-	*/
-	
+	 * public static void main(String[] args) { System.out.println("產生資料庫"); }
+	 */
+
 	@Override
 	public Integer create(Task task) {
 		String sql = "INSERT INTO Task (name, 'work', eat, commute, entertainment, sleep) VALUES(?, ?, ?, ?, ?, ?)";
-		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, task.getName());
 			pstmt.setInt(2, task.getWork());
 			pstmt.setInt(3, task.getEat());
@@ -52,8 +50,7 @@ public class TaskDaoImpl implements TaskDao {
 	public List<Task> readAll() {
 		List<Task> tasks = new ArrayList<>();
 		String sql = "select id, name, work, eat, commute, entertainment, sleep from Task";
-		try(Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);) {
+		try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql);) {
 			while (rs.next()) {
 				// 建立 task 物件並將資料表欄位資訊注入
 				Task task = new Task();
@@ -67,7 +64,7 @@ public class TaskDaoImpl implements TaskDao {
 				// 將 task 物件加入到 tasks 集合中
 				tasks.add(task);
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -76,20 +73,59 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public Task readById(Integer id) {
-		// TODO Auto-generated method stub
+		String sql = "select id, name, work, eat, commute, entertainment, sleep from Task where id=?";
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				// 建立 task 物件並將資料表欄位資訊注入
+				Task task = new Task();
+				task.setId(rs.getInt("id"));
+				task.setName(rs.getString("name"));
+				task.setWork(rs.getInt("work"));
+				task.setEat(rs.getInt("eat"));
+				task.setCommute(rs.getInt("commute"));
+				task.setEntertainment(rs.getInt("entertainment"));
+				task.setSleep(rs.getInt("sleep"));
+				return task;
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		return null;
 	}
 
 	@Override
 	public Integer update(Integer id, Task newTask) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "Update Task set name=?, 'work'=?, eat=?, commute=?, entertainment=?, sleep=? where id=?";
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, newTask.getName());
+			pstmt.setInt(2, newTask.getWork());
+			pstmt.setInt(3, newTask.getEat());
+			pstmt.setInt(4, newTask.getCommute());
+			pstmt.setInt(5, newTask.getEntertainment());
+			pstmt.setInt(6, newTask.getSleep());
+			pstmt.setInt(7, id);
+			int rowcount = pstmt.executeUpdate();
+			return rowcount;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return 0;
 	}
 
 	@Override
 	public Integer delete(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "delete from Task where id = ?";
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, id);
+			int rowcount = pstmt.executeUpdate();
+			return rowcount;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return 0;
 	}
-	
+
 }
