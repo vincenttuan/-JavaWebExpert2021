@@ -36,18 +36,32 @@ public class TaskController extends HttpServlet {
 	}
 	
 	private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id = req.getParameter("id");
+		String name = req.getParameter("name");
+		String work = req.getParameter("work");
+		String eat = req.getParameter("eat");
+		String commute = req.getParameter("commute");
+		String entertainment = req.getParameter("entertainment");
+		String sleep = req.getParameter("sleep");
 		
+		int rowcount = taskService.update(id, name, work, eat, commute, entertainment, sleep);
+		
+		if(rowcount == 1) {
+			resp.sendRedirect("/web/mvc/task/query");
+		} else {
+			resp.sendError(500, "修改失敗");
+		}
 	}
 	
 	private void query(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/task/task.jsp");
 		Task task = new Task();
 		task.setId(0);
-		task.setWork(8);
+		task.setWork(11);
 		task.setEat(2);
 		task.setCommute(2);
 		task.setEntertainment(2);
 		task.setSleep(7);
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/task/task.jsp");
 		req.setAttribute("task", task);
 		req.setAttribute("action", "add");
 		req.setAttribute("tasks", taskService.queryAll());
@@ -66,7 +80,12 @@ public class TaskController extends HttpServlet {
 	
 	private void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
-		
+		Task task = taskService.getOne(id);
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/task/task.jsp");
+		req.setAttribute("task", task);
+		req.setAttribute("action", "update");
+		req.setAttribute("tasks", taskService.queryAll());
+		rd.forward(req, resp);
 	}
 	
 	private void drawchart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
