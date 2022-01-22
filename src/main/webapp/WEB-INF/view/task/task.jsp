@@ -8,6 +8,17 @@
 	<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
 	<meta charset="UTF-8">
 	<title>Task CRUD</title>
+	<script type="text/javascript">
+		function updateSubtotal(n) {
+			var work = document.getElementById('work').value * 1;
+			var eat = document.getElementById('eat').value * 1;
+			var commute = document.getElementById('commute').value * 1;
+			var entertainment = document.getElementById('entertainment').value * 1;
+			var sleep = document.getElementById('sleep').value * 1;
+			var sum = work + eat + commute + entertainment + sleep;
+			document.getElementById('subtotal').innerText = sum;
+		}
+	</script>
 </head>
 <body style="padding: 20px">
 
@@ -24,28 +35,35 @@
 				</tr>
 				<tr>
 					<td>work：</td>
-					<td><input type="number" id="work" name="work" value="8" /></td>
+					<td><input type="number" id="work" name="work" value="8" onchange="updateSubtotal(this.value);" /></td>
 				</tr>
 				<tr>
 					<td>eat：</td>
-					<td><input type="number" id="eat" name="eat" value="3" /></td>
+					<td><input type="number" id="eat" name="eat" value="3" onchange="updateSubtotal(this.value);" /></td>
 				</tr>
 				<tr>
 					<td>commute：</td>
-					<td><input type="number" id="commute" name="commute" value="3" /></td>
+					<td><input type="number" id="commute" name="commute" value="3" onchange="updateSubtotal(this.value);" /></td>
 				</tr>
 				<tr>
 					<td>entertainment：</td>
-					<td><input type="number" id="entertainment" name="entertainment" value="3" /></td>
+					<td><input type="number" id="entertainment" name="entertainment" value="3" onchange="updateSubtotal(this.value);" /></td>
 				</tr>
 				<tr>
 					<td>sleep：</td>
-					<td><input type="number" id="sleep" name="sleep" value="7" /></td>
+					<td><input type="number" id="sleep" name="sleep" value="7" onchange="updateSubtotal(this.value);" /></td>
+				</tr>
+				<tr>
+					<td>24H：</td>
+					<td><span id="subtotal">24</span>H</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="submit" value="add" />
-						<input type="reset" value="reset" />
+						<input class="pure-button pure-button-primary" type="submit" value="add" />
+						<input class="pure-button pure-button-primary" type="reset" value="reset" />
+						<input class="pure-button pure-button-primary" type="button" 
+							   onclick="window.location.href='/web/mvc/task/query';"	
+							   value="query" />
 					</td>
 				</tr>
 			</table>
