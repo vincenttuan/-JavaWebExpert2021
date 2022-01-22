@@ -28,4 +28,15 @@ try {
 } catch (Exception e) {
 	out.print(e);
 }
+
+4.create table
+create table Task (
+	id integer primary key autoincrement,
+	name text,
+	work integer,
+	eat integer,
+	commute integer,
+	entertainment integer,
+	sleep integer
+)
 </pre>
