@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.mvc.task.model.Task;
 import web.mvc.task.service.TaskService;
 import web.mvc.task.service.TaskServiceImpl;
 
@@ -40,6 +41,15 @@ public class TaskController extends HttpServlet {
 	
 	private void query(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/task/task.jsp");
+		Task task = new Task();
+		task.setId(0);
+		task.setWork(8);
+		task.setEat(2);
+		task.setCommute(2);
+		task.setEntertainment(2);
+		task.setSleep(7);
+		req.setAttribute("task", task);
+		req.setAttribute("action", "add");
 		req.setAttribute("tasks", taskService.queryAll());
 		rd.forward(req, resp);
 	}
