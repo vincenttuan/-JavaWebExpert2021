@@ -35,36 +35,36 @@
 </head>
 <body style="padding: 20px">
 
-	<form class="pure-form" method="post" onsubmit="return checkSubtotal()" action="/web/mvc/task/add">
+	<form class="pure-form" method="post" onsubmit="return checkSubtotal()" action="/web/mvc/task/${ action }">
 		<fieldset>
 			<table>
 				<tr>
 					<td>id：</td>
-					<td><input type="text" id="id" name="id" value="0" readonly /></td>
+					<td><input type="text" id="id" name="id" value="${ task.id }" readonly /></td>
 				</tr>
 				<tr>
 					<td>name：</td>
-					<td><input type="text" id="name" name="name" value="" /></td>
+					<td><input type="text" id="name" name="name" value="${ task.name }" /></td>
 				</tr>
 				<tr>
 					<td>work：</td>
-					<td><input type="number" id="work" name="work" value="8" onchange="updateSubtotal(this);" /></td>
+					<td><input type="number" id="work" name="work" value="${ task.work }" onchange="updateSubtotal(this);" /></td>
 				</tr>
 				<tr>
 					<td>eat：</td>
-					<td><input type="number" id="eat" name="eat" value="3" onchange="updateSubtotal(this);" /></td>
+					<td><input type="number" id="eat" name="eat" value="${ task.eat }" onchange="updateSubtotal(this);" /></td>
 				</tr>
 				<tr>
 					<td>commute：</td>
-					<td><input type="number" id="commute" name="commute" value="3" onchange="updateSubtotal(this);" /></td>
+					<td><input type="number" id="commute" name="commute" value="${ task.commute }" onchange="updateSubtotal(this);" /></td>
 				</tr>
 				<tr>
 					<td>entertainment：</td>
-					<td><input type="number" id="entertainment" name="entertainment" value="3" onchange="updateSubtotal(this);" /></td>
+					<td><input type="number" id="entertainment" name="entertainment" value="${ task.entertainment }" onchange="updateSubtotal(this);" /></td>
 				</tr>
 				<tr>
 					<td>sleep：</td>
-					<td><input type="number" id="sleep" name="sleep" value="7" onchange="updateSubtotal(this);" /></td>
+					<td><input type="number" id="sleep" name="sleep" value="${ task.sleep }" onchange="updateSubtotal(this);" /></td>
 				</tr>
 				<tr>
 					<td>24H：</td>
@@ -72,7 +72,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input class="pure-button pure-button-primary" type="submit" value="add" />
+						<input class="pure-button pure-button-primary" type="submit" value="${ action }" />
 						<input class="pure-button pure-button-primary" type="reset" value="reset" />
 						<input class="pure-button pure-button-primary" type="button" 
 							   onclick="window.location.href='/web/mvc/task/query';"	
