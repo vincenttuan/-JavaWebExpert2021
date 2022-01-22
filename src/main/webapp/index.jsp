@@ -45,6 +45,23 @@
 			</a>
 		</li>
 		
+		<li>
+			<a href="./servlet/report/a">
+				Filter /servlet/report/a (預設通關密碼 = 1)
+			</a>
+		</li>
+		
+		<li>
+			<a href="./servlet/report/b">
+				Filter /servlet/report/b (預設通關密碼 = 1)
+			</a>
+		</li>
+		
+		<li>
+			<a href="./session/order">
+				Session /session/order (預設帳密 A01/1234)
+			</a>
+		</li>
 	</ul>
 	
 	MVC - In Memory
@@ -62,6 +79,11 @@
 		<li>
 			<a href="./mvc/selection/form">
 				選課表單 - Course Selection Form
+			</a>
+		</li>
+		<li>
+			<a href="./mvc/task/query">
+				Task表單 - Task Form + Chart
 			</a>
 		</li>
 	</ul>
