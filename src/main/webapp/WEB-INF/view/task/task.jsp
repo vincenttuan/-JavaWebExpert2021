@@ -9,20 +9,30 @@
 	<meta charset="UTF-8">
 	<title>Task CRUD</title>
 	<script type="text/javascript">
-		function updateSubtotal(n) {
+		function checkSubtotal() {
+			var check = calcSubtotal() == 24;
+			if(!check) {
+				alert('時數必須滿足 24H');
+			}
+			return check;
+		}
+		function calcSubtotal() {
 			var work = document.getElementById('work').value * 1;
 			var eat = document.getElementById('eat').value * 1;
 			var commute = document.getElementById('commute').value * 1;
 			var entertainment = document.getElementById('entertainment').value * 1;
 			var sleep = document.getElementById('sleep').value * 1;
 			var sum = work + eat + commute + entertainment + sleep;
-			document.getElementById('subtotal').innerText = sum;
+			return sum;
+		}
+		function updateSubtotal(n) {
+			document.getElementById('subtotal').innerText = calcSubtotal();
 		}
 	</script>
 </head>
 <body style="padding: 20px">
 
-	<form class="pure-form" method="post" action="">
+	<form class="pure-form" method="post" onsubmit="return checkSubtotal()" action="">
 		<fieldset>
 			<table>
 				<tr>
