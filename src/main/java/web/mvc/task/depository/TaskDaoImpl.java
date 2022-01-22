@@ -41,7 +41,6 @@ public class TaskDaoImpl implements TaskDao {
 		String sql = "select id, name, work, eat, commute, entertainment, sleep from Task";
 		try(Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);) {
-			
 			while (rs.next()) {
 				// 建立 task 物件並將資料表欄位資訊注入
 				Task task = new Task();
