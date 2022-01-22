@@ -17,6 +17,23 @@ public class TaskController extends HttpServlet {
 	
 	private TaskService taskService = new TaskServiceImpl();
 	
+	private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String name = req.getParameter("name");
+		String work = req.getParameter("work");
+		String eat = req.getParameter("eat");
+		String commute = req.getParameter("commute");
+		String entertainment = req.getParameter("entertainment");
+		String sleep = req.getParameter("sleep");
+		
+		int rowcount = taskService.add(name, work, eat, commute, entertainment, sleep);
+		
+		if(rowcount == 1) {
+			resp.sendRedirect("/web/mvc/task/query");
+		} else {
+			resp.sendError(500, "新增失敗");
+		}
+	}
+	
 	private void query(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/task/task.jsp");
 		req.setAttribute("tasks", taskService.queryAll());
@@ -34,7 +51,11 @@ public class TaskController extends HttpServlet {
 				break;
 	
 			case "POST":
-				
+				switch(req.getPathInfo()) {
+					case "/add":
+						add(req, resp);
+						break;
+				}
 				break;
 		}
 	}

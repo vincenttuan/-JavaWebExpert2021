@@ -35,7 +35,7 @@
 </head>
 <body style="padding: 20px">
 
-	<form class="pure-form" method="post" onsubmit="return checkSubtotal()" action="">
+	<form class="pure-form" method="post" onsubmit="return checkSubtotal()" action="/web/mvc/task/add">
 		<fieldset>
 			<table>
 				<tr>
