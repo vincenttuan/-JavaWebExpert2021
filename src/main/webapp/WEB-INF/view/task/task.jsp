@@ -13,7 +13,42 @@
 
 	<form class="pure-form" method="post" action="">
 		<fieldset>
-			
+			<table>
+				<tr>
+					<td>id：</td>
+					<td><input type="text" id="id" name="id" value="0" readonly /></td>
+				</tr>
+				<tr>
+					<td>name：</td>
+					<td><input type="text" id="name" name="name" value="" /></td>
+				</tr>
+				<tr>
+					<td>work：</td>
+					<td><input type="number" id="work" name="work" value="8" /></td>
+				</tr>
+				<tr>
+					<td>eat：</td>
+					<td><input type="number" id="eat" name="eat" value="3" /></td>
+				</tr>
+				<tr>
+					<td>commute：</td>
+					<td><input type="number" id="commute" name="commute" value="3" /></td>
+				</tr>
+				<tr>
+					<td>entertainment：</td>
+					<td><input type="number" id="entertainment" name="entertainment" value="3" /></td>
+				</tr>
+				<tr>
+					<td>sleep：</td>
+					<td><input type="number" id="sleep" name="sleep" value="7" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="add" />
+						<input type="reset" value="reset" />
+					</td>
+				</tr>
+			</table>
 		</fieldset>
 	</form>
 	
@@ -27,7 +62,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			
+			<c:forEach var="task" items="${ tasks }">
+				<tr>
+					<td>${ task.id }</td>
+					<td>${ task.name }</td>
+					<td>${ task.work }</td>
+					<td>${ task.eat }</td>
+					<td>${ task.commute }</td>
+					<td>${ task.entertainment }</td>
+					<td>${ task.sleep }</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 	
