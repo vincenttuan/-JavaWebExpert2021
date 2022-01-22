@@ -90,6 +90,13 @@ public class TaskController extends HttpServlet {
 	
 	private void drawchart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
+		Task task = taskService.getOne(id);
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/task/task.jsp");
+		req.setAttribute("task", task);
+		req.setAttribute("action", "update");
+		req.setAttribute("drawchart", "chart.draw(data, options);");
+		req.setAttribute("tasks", taskService.queryAll());
+		rd.forward(req, resp);
 		
 	}
 	
